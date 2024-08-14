@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/SignUp</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script>
+        function showSignUp() {
+            document.getElementById('signupForm').style.display = 'block';
+            document.getElementById('loginForm').style.display = 'none';
+        }
+
+        function showLogin() {
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="container">
+        <h1>Login / SignUp</h1>
+        <% if (typeof success !== 'undefined') { %>
+            <p><%= success %></p>
+        <% } %>
+        <div>
+            <button onclick="showLogin()">Login</button>
+            <button onclick="showSignUp()">Sign Up</button>
+        </div>
+        <div id="loginForm" style="display: block;">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div id="signupForm" style="display: none;">
+            <h2>Sign Up</h2>
+            <form action="/signup" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="repeatPassword">Repeat Password:</label>
+                <input type="password" id="repeatPassword" name="repeatPassword" required>
+
+                <label for="userType">User Type:</label>
+                <select id="userType" name="userType" required>
+                    <option value="Driver">Driver</option>
+                    <option value="Examiner">Examiner</option>
+                    <option value="Admin">Admin</option>
+                </select>
+
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

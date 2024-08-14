@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G Test</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar', { user: user }) %>
+    <div class="container">
+        <h1>G Test</h1>
+        <% if (!user) { %>
+            <form action="/get-user" method="POST">
+                <label for="licenseNumber">License Number:</label>
+                <input type="text" id="licenseNumber" name="licenseNumber" maxlength="8" pattern="[A-Za-z0-9]{8}" required>
+                <button type="submit">Submit</button>
+            </form>
+        <% } else { %>
+            <p>Welcome, <%= user.username %>! Here is your information:</p>
+            <ul>
+                <li>First Name: <%= user.firstName %></li>
+                <li>Last Name: <%= user.lastName %></li>
+                <li>License Number: <%= user.licenseNumber %></li>
+                <li>Car Make: <%= user.carDetails.make %></li>
+                <li>Car Model: <%= user.carDetails.model %></li>
+                <li>Car Year: <%= user.carDetails.year %></li>
+                <li>Plate Number: <%= user.carDetails.plateNumber %></li>
+            </ul>
+        <% } %>
+    </div>
+</body>
+</html>
